@@ -99,8 +99,8 @@
 }
 
 .logo-box-exact {
-    width: 95px;
-    height: 95px;
+    width: 110px;
+    height: 110px;
     border-radius: 50%;
     background: #ffffff;
     display: flex;
@@ -129,8 +129,8 @@
 .header-text-exact h1 {
     font-family: 'Noto Sans Gujarati', sans-serif;
     color: #FFEB3B;
-    font-size: 46px;
-    /* Increased from 38px */
+    font-size: 54px;
+    /* Increased from 46px */
     font-weight: 900;
     margin: 0;
     text-shadow:
