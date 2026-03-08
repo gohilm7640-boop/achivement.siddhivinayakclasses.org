@@ -195,11 +195,15 @@ export default function App() {
               width: '100%', padding: '16px', backgroundColor: '#2563eb', color: 'white',
               border: 'none', borderRadius: '12px', fontSize: '16px', fontWeight: 600,
               display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '8px',
-              cursor: 'pointer', boxShadow: '0 4px 15px rgba(37,99,235,0.3)'
+              cursor: 'pointer', boxShadow: '0 4px 15px rgba(37,99,235,0.3)', marginBottom: '20px'
             }}>
             <Download size={20} />
             Download HD Poster
           </button>
+
+          <div style={{ textAlign: 'center', fontSize: '12px', color: '#6b7280' }}>
+            © 2026 Designed by <a href="https://uimitra.com" target="_blank" rel="noopener noreferrer" style={{ color: '#2563eb', textDecoration: 'none', fontWeight: 600 }}>Uimitra</a>
+          </div>
         </div>
       </div>
 
