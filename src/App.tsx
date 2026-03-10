@@ -1,6 +1,6 @@
 import React, { useRef, useState, useEffect } from 'react';
 import * as htmlToImage from 'html-to-image';
-import { Download, Upload, Image as ImageIcon } from 'lucide-react';
+import { Download, Upload, Image as ImageIcon, Trash2, Plus } from 'lucide-react';
 import { Poster } from './Poster';
 import type { PosterData } from './Poster';
 
@@ -62,6 +62,14 @@ export default function App() {
     const newSubjects = [...data.subjects];
     newSubjects[index] = { ...newSubjects[index], [field]: value };
     setData(prev => ({ ...prev, subjects: newSubjects }));
+  };
+
+  const handleAddSubject = () => {
+    setData(prev => ({ ...prev, subjects: [...prev.subjects, { name: '', marks: '' }] }));
+  };
+
+  const handleRemoveSubject = (index: number) => {
+    setData(prev => ({ ...prev, subjects: prev.subjects.filter((_, i) => i !== index) }));
   };
 
   const downloadPoster = async () => {
@@ -166,20 +174,60 @@ export default function App() {
 
           <h3 style={{ fontSize: '16px', marginTop: '30px', marginBottom: '16px', borderBottom: '2px solid #e5e7eb', paddingBottom: '8px' }}>Subjects & Marks</h3>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '30px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', marginBottom: '16px' }}>
             {data.subjects.map((sub, idx) => (
-              <div key={idx} style={{ display: 'flex', gap: '12px' }}>
+              <div key={idx} style={{ display: 'flex', gap: '12px', alignItems: 'flex-end' }}>
                 <div style={{ flex: 1 }}>
                   <label style={labelStyle}>Subject {idx + 1}</label>
                   <input style={inputStyle} placeholder="e.g. MATHS" value={sub.name} onChange={e => handleSubjectChange(idx, 'name', e.target.value)} />
                 </div>
-                <div style={{ width: '120px' }}>
+                <div style={{ width: '100px' }}>
                   <label style={labelStyle}>Marks</label>
                   <input style={inputStyle} placeholder={`e.g. ${['98/100', '94/100', '91/100', '97/100'][idx % 4]}`} value={sub.marks} onChange={e => handleSubjectChange(idx, 'marks', e.target.value)} />
                 </div>
+                <button
+                  onClick={() => handleRemoveSubject(idx)}
+                  style={{
+                    padding: '10px',
+                    backgroundColor: '#fee2e2',
+                    color: '#ef4444',
+                    border: 'none',
+                    borderRadius: '8px',
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                  title="Remove Subject"
+                >
+                  <Trash2 size={18} />
+                </button>
               </div>
             ))}
           </div>
+
+          <button
+            onClick={handleAddSubject}
+            style={{
+              width: '100%',
+              padding: '10px',
+              backgroundColor: '#f3f4f6',
+              color: '#374151',
+              border: '1px dashed #d1d5db',
+              borderRadius: '8px',
+              cursor: 'pointer',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              gap: '6px',
+              fontWeight: 600,
+              fontSize: '14px',
+              marginBottom: '30px'
+            }}
+          >
+            <Plus size={16} />
+            Add Another Subject
+          </button>
 
           <div>
             <label style={labelStyle}>Phone Number(s) for Admission</label>
